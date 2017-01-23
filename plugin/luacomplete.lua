@@ -1,10 +1,3 @@
-------------------------------------------------------------------------------
--- (c) 2011 Radosław Kowalski <rk@bixbite.pl>                               --
--- lua_omni.lua - Lua functions for Vim's omni completions v0.17            --
--- Licensed under the same terms as Lua (MIT license).                      --
-------------------------------------------------------------------------------
-
-
 local PATTERN_LUA_IDENTIFIER = '([%a_]+[%a%d_.]*)'
 
 
