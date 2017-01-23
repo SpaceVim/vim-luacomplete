@@ -6,19 +6,17 @@
 
 " check if Vim is in correct version and has Lua support
 if v:version < 703
-    echo 'Only Vim version 7.3 (or newer) is supported!'
+    echohl WarningMsg
+    echom 'Only Vim version 7.3 (or newer) is supported!'
+    echohl NONE
     finish
 endif
 if !has('lua')
-    echo 'Lua support must be enabled!'
+    echohl WarningMsg
+    echom 'Lua support must be enabled!'
+    echohl NONE
     finish
 endif
-
-" as usual...
-if exists('b:did_lua_completions')
-    finish
-endif
-let b:did_lua_completions = 1
 
 " save and reset compatibility options
 let s:save_cpo = &cpo
@@ -48,49 +46,10 @@ let g:luacompleteEnableDefaultMappings = 0
 
 noremap <unique> <script> <Plug>PrintFunctionList   :lua print_function_list()
 noremap <unique> <script> <Plug>WriteAndLuaFile     :w
-noremap <unique> <script> <Plug>SetLuaIabbrevs      :call SetLuaIabbrevs()
-noremap <unique> <script> <Plug>ClearLuaIabbrevs    :call ClearLuaIabbrevs()
+noremap <unique> <script> <Plug>SetLuaIabbrevs      :call luacomplete#SetLuaIabbrevs()
+noremap <unique> <script> <Plug>ClearLuaIabbrevs    :call luacomplete#ClearLuaIabbrevs()
 
 
-" Common Lua abbreviations
-let s:iabbrevlist = [
-            \ ['pr(', 'print('],
-            \ ['con(', 'table.concat('],
-            \ ['ip(', 'ipairs('],
-            \ ['pa(', 'pairs('],
-            \ ['ins(', 'table.insert('],
-            \ ['gmatch(', 'string.gmatch('],
-            \ ['find(', 'string.find('],
-            \ ['sub(', 'string.sub('],
-            \ ['gsub(', 'string.gsub('],
-            \ ['loc', 'local'],
-            \ ['unp(', 'unpack('],
-            \ ['match(', 'string.match('],
-            \ ['sort(', 'table.sort('],
-            \ ['ty(', 'type('],
-            \ ['fore(', 'table.foreach('],
-            \ ['forei(', 'table.foreachi('],
-            \ ['func', 'function'],
-            \ ['th', 'then'],
-            \ ['el', 'else'],
-            \ ['ei', 'elseif'],
-            \ ['rep(', 'string.rep('],
-            \ ['len(', 'string.len('],
-            \ ['wrap(', 'coroutine.wrap('],
-            \ ['yield(', 'coroutine.yield(']
-            \ ]
-
-function! SetLuaIabbrevs()
-    for a in s:iabbrevlist
-        execute 'iabbrev ' . a[0] . ' ' . a[1]
-    endfor
-endfunction
-
-function! ClearLuaIabbrevs()
-    for a in s:iabbrevlist
-        execute 'iunabbrev ' . a[0]
-    endfor
-endfunction
 
 " restore compatibility options
 let &cpo = s:save_cpo
