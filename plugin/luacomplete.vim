@@ -1,6 +1,6 @@
 ""
 " @section Introduction, intro
-" @order intro
+" @order intro mappings
 " This ia a basic completion plugin for lua file.
 
 
@@ -24,22 +24,27 @@ let b:did_lua_completions = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-" source Lua...
-exe 'luafile ' . fnamemodify(expand('<sfile>'), ':h').'/luacomplete.lua'
+""
+" Diable/Enable default mappings in lua buffer.
+" >
+"   mode        key         functinon
+"   normal      <leader>fl  print functin list
+"   normal      <leader>lf  wirte and luafile
+"   normal      <leader>sli set lua iabbrevs
+"   normal      <leader>cli clear lua iabbrevs
+" <
+let g:luacompleteEnableDefaultMappings = 0
 
-" mappings...
-if !hasmapto('<Plug>PrintFunctionList')
-    map <unique> <Leader>fl  <Plug>PrintFunctionList
-endif
-if !hasmapto('<Plug>WriteAndLuaFile')
-    map <unique> <Leader>lf  <Plug>WriteAndLuaFile
-endif
-if !hasmapto('<Plug>SetLuaIabbrevs')
-    map <unique> <Leader>sli  <Plug>SetLuaIabbrevs
-endif
-if !hasmapto('<Plug>ClearLuaIabbrevs')
-    map <unique> <Leader>cli  <Plug>ClearLuaIabbrevs
-endif
+""
+" @section Mappings, mappings
+" luacomplete defined some mappings for lua buffer:
+" >
+"   <Plug>PrintFunctionList  print functino list
+"   <Plug>WriteAndLuaFile    wirte and luafile
+"   <Plug>SetLuaIabbrevs     set lua iabbrevs
+"   <Plug>ClearLuaIabbrevs   clear lua iabbrevs
+" <
+
 
 noremap <unique> <script> <Plug>PrintFunctionList   :lua print_function_list()
 noremap <unique> <script> <Plug>WriteAndLuaFile     :w
@@ -86,11 +91,6 @@ function! ClearLuaIabbrevs()
         execute 'iunabbrev ' . a[0]
     endfor
 endfunction
-
-augroup luacomplete
-    au!
-    autocmd FileType lua setlocal omnifunc=luacomplete#complete
-augroup END
 
 " restore compatibility options
 let &cpo = s:save_cpo
