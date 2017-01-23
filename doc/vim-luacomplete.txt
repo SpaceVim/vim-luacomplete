@@ -1,0 +1,8 @@
+*vim-luacomplete.txt*
+                                                             *vim-luacomplete*
+
+==============================================================================
+CONTENTS                                            *vim-luacomplete-contents*
+
+
+vim:tw=78:ts=8:ft=help:norl:

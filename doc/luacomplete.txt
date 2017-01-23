@@ -1,0 +1,14 @@
+*luacomplete.txt*	lua complete plugin for vim
+SpaceVim                                                         *luacomplete*
+
+==============================================================================
+CONTENTS                                                *luacomplete-contents*
+  1. Introduction..........................................|luacomplete-intro|
+
+==============================================================================
+INTRODUCTION                                               *luacomplete-intro*
+
+This ia a basic completion plugin for lua file.
+
+
+vim:tw=78:ts=8:ft=help:norl:
