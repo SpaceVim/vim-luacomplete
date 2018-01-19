@@ -6,7 +6,6 @@ CONTENTS                                                *luacomplete-contents*
   1. Introduction..........................................|luacomplete-intro|
   2. Configuration........................................|luacomplete-config|
   3. Functions.........................................|luacomplete-functions|
-  4. Mappings...........................................|luacomplete-mappings|
 
 ==============================================================================
 INTRODUCTION                                               *luacomplete-intro*
@@ -34,17 +33,6 @@ luacomplete#complete({findstart}, {base})             *luacomplete#complete()*
   to you vimrc.
 >
     autocmd FileType lua setlocal omnifunc=luacomplete#complete
-<
-
-==============================================================================
-MAPPINGS                                                *luacomplete-mappings*
-
-luacomplete defined some mappings for lua buffer:
->
-  <Plug>PrintFunctionList  print functino list
-  <Plug>WriteAndLuaFile    wirte and luafile
-  <Plug>SetLuaIabbrevs     set lua iabbrevs
-  <Plug>ClearLuaIabbrevs   clear lua iabbrevs
 <
 
 
